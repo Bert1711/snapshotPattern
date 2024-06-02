@@ -11,8 +11,14 @@ public class Main {
         csb.append("Hello");
         System.out.println(csb); // Output: Hello
 
+        csb.append(" World!");
+        System.out.println(csb); // Output: Hello World!
+
         csb.append(" World");
-        System.out.println(csb); // Output: Hello World
+        System.out.println(csb); // Output: Hello World! World
+
+        csb.undo();
+        System.out.println(csb); // Output: Hello World!
 
         csb.undo();
         System.out.println(csb); // Output: Hello

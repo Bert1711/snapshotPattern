@@ -8,10 +8,11 @@ import java.util.Stack;
 public class StringBuilderRealization {
 
     private StringBuilder stringBuilder;
-    private String savedState;
+    private Stack<String> stateStack;
 
     public StringBuilderRealization() {
         this.stringBuilder = new StringBuilder();
+        this.stateStack = new Stack<>();
         saveSnapshot(); // Сохраняем начальное состояние
     }
 
@@ -48,10 +49,12 @@ public class StringBuilderRealization {
     }
 
     private void saveSnapshot() {
-        savedState = stringBuilder.toString();
+        stateStack.push(stringBuilder.toString());
     }
 
     public void undo() {
-        stringBuilder = new StringBuilder(savedState);
+        if (!stateStack.isEmpty()) {
+            stringBuilder = new StringBuilder(stateStack.pop());
+        }
     }
 }
